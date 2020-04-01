@@ -18,12 +18,12 @@
         <div class="col-md-12">
         	<nav>
         		<div class="nav nav-tabs" role="tablist">
-        			<a href="{{ url('my-bookings/all') }}" class="nav-item nav-link {{ (request()->is('my-bookings/all*')) ? 'active' : '' }}">All</a>
-        			<a href="{{ url('my-bookings/pending') }}" class="nav-item nav-link {{ (request()->is('my-bookings/pending*')) ? 'active' : '' }}">Pending</a>
-        			<a href="{{ url('my-bookings/processing') }}" class="nav-item nav-link {{ (request()->is('my-bookings/processing*')) ? 'active' : '' }}">Processing</a>
-        			<a href="{{ url('my-bookings/approved') }}" class="nav-item nav-link {{ (request()->is('my-bookings/approved*')) ? 'active' : '' }}">Approved</a>
-        			<a href="{{ url('my-bookings/completed') }}" class="nav-item nav-link {{ (request()->is('my-bookings/completed*')) ? 'active' : '' }}">Completed</a>
-        			<a href="{{ url('my-bookings/cancelled') }}" class="nav-item nav-link {{ (request()->is('my-bookings/cancelled*')) ? 'active' : '' }}">Cancelled</a>
+        			<a href="{{ url('my-booking/all') }}" class="nav-item nav-link {{ (request()->is('my-booking/all*')) ? 'active' : '' }}">All</a>
+        			<a href="{{ url('my-booking/pending') }}" class="nav-item nav-link {{ (request()->is('my-booking/pending*')) ? 'active' : '' }}">Pending</a>
+        			<a href="{{ url('my-booking/processing') }}" class="nav-item nav-link {{ (request()->is('my-booking/processing*')) ? 'active' : '' }}">Processing</a>
+        			<a href="{{ url('my-booking/approved') }}" class="nav-item nav-link {{ (request()->is('my-booking/approved*')) ? 'active' : '' }}">Approved</a>
+        			<a href="{{ url('my-booking/completed') }}" class="nav-item nav-link {{ (request()->is('my-booking/completed*')) ? 'active' : '' }}">Completed</a>
+        			<a href="{{ url('my-booking/cancelled') }}" class="nav-item nav-link {{ (request()->is('my-booking/cancelled*')) ? 'active' : '' }}">Cancelled</a>
         		</div>
         	</nav>
         	<div class="tab-content">

@@ -20,7 +20,7 @@
                     <a class="nav-link" href="{{ url('request-booking') }}"><i class="fas fa-hand-point-up"></i>&nbsp;Book Now</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('my-bookings') }}"><i class="fas fa-passport"></i>&nbsp;My Bookings</a>
+                    <a class="nav-link" href="{{ url('my-booking') }}"><i class="fas fa-passport"></i>&nbsp;My Bookings</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fas fa-calendar-alt"></i>&nbsp;Schedules</a>

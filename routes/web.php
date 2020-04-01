@@ -27,8 +27,8 @@ Route::post('/updateProfile', 'HomeController@updateProfile')->name('updateProfi
 // admin routes
 Route::group(['middleware' => 'employee'], function () {
 
-	Route::group(['prefix'=>'my-bookings', 'as' => 'myBookings.'], function() {
-		Route::redirect('/', 'my-bookings/all');
+	Route::group(['prefix'=>'my-booking', 'as' => 'myBooking.'], function() {
+		Route::redirect('/', 'my-booking/all');
 		Route::get('/all', 'Employee\BookingController@index')->name('all');
 		Route::get('/pending', 'Employee\BookingController@pendingPage')->name('pending');
 		Route::get('/processing', 'Employee\BookingController@processingPage')->name('processing');
