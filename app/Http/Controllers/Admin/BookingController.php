@@ -58,7 +58,7 @@ class BookingController extends Controller
                         'objectives',
                         'departure_date', 
                         'return_date',
-                        'status',
+                        'status'
                     );
 
         if (isset($request->booking_number) && $request->booking_number !=='') {

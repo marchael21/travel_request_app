@@ -57,7 +57,7 @@ class BookingController extends Controller
                         'objectives',
                         'departure_date', 
                         'return_date',
-                        'status',
+                        'status'
                     )->where('employee_id', $authId);
 
         if (isset($request->booking_number) && $request->booking_number !=='') {
@@ -568,7 +568,7 @@ class BookingController extends Controller
                         'objectives',
                         'departure_date', 
                         'return_date',
-                        'status',
+                        'status'
                     )->where('employee_id', $authId)
                     ->where('id', $request->booking_id)
                     ->where('status', 1)->first();

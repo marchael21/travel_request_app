@@ -58,7 +58,7 @@ class BookingController extends Controller
                         'objectives',
                         'departure_date', 
                         'return_date',
-                        'status',
+                        'status'
                     )->where('driver_id', $authId);
 
         if (isset($request->booking_number) && $request->booking_number !=='') {
