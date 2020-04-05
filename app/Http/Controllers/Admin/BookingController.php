@@ -955,7 +955,7 @@ class BookingController extends Controller
                         'objectives',
                         'departure_date', 
                         'return_date',
-                        'status',
+                        'status'
                     )->where('id', $request->booking_id)
                     ->where('status', 1)->first();
 
