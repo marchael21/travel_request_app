@@ -18,13 +18,13 @@
         <div class="col-md-12">
         	<nav>
         		<div class="nav nav-tabs" role="tablist">
-        			<a href="{{ url('my-booking/all') }}" class="nav-item nav-link {{ (request()->is('my-booking/all*')) ? 'active' : '' }}">All</a>
-        			<a href="{{ url('my-booking/pending') }}" class="nav-item nav-link {{ (request()->is('my-booking/pending*')) ? 'active' : '' }}">Pending</a>
-        			<a href="{{ url('my-booking/processing') }}" class="nav-item nav-link {{ (request()->is('my-booking/processing*')) ? 'active' : '' }}">Processing</a>
-        			<a href="{{ url('my-booking/approved') }}" class="nav-item nav-link {{ (request()->is('my-booking/approved*')) ? 'active' : '' }}">Approved</a>
-        			<a href="{{ url('my-booking/completed') }}" class="nav-item nav-link {{ (request()->is('my-booking/completed*')) ? 'active' : '' }}">Completed</a>
-        			<a href="{{ url('my-booking/cancelled') }}" class="nav-item nav-link {{ (request()->is('my-booking/cancelled*')) ? 'active' : '' }}">Cancelled</a>
-        		</div>
+                    <a href="{{ url('my-booking/all') }}" class="nav-item nav-link {{ (request()->is('my-booking/all*')) ? 'active' : '' }}">All ({{ $bookingCount['all'] }})</a>
+                    <a href="{{ url('my-booking/pending') }}" class="nav-item nav-link {{ (request()->is('my-booking/pending*')) ? 'active' : '' }}">Pending ({{ $bookingCount['pending'] }})</a>
+                    <a href="{{ url('my-booking/processed') }}" class="nav-item nav-link {{ (request()->is('my-booking/processed*')) ? 'active' : '' }}">Processed ({{ $bookingCount['processed'] }})</a>
+                    <a href="{{ url('my-booking/approved') }}" class="nav-item nav-link {{ (request()->is('my-booking/approved*')) ? 'active' : '' }}">Approved ({{ $bookingCount['approved'] }})</a>
+                    <a href="{{ url('my-booking/completed') }}" class="nav-item nav-link {{ (request()->is('my-booking/completed*')) ? 'active' : '' }}">Completed ({{ $bookingCount['completed'] }})</a>
+                    <a href="{{ url('my-booking/cancelled') }}" class="nav-item nav-link {{ (request()->is('my-booking/cancelled*')) ? 'active' : '' }}">Cancelled ({{ $bookingCount['cancelled'] }})</a>
+                </div>
         	</nav>
         	<div class="tab-content">
         		@yield('tab')
@@ -32,9 +32,24 @@
         </div>
     </div>
 </div>
+
+@include('elements.employee.modals.cancel_booking_modal')
+
 @endsection
 
 @push('scripts')
+
+@if(!empty(Session::get('cancelModalData')))
+<script>
+$(function() {
+    // var cancelModalData = ;
+    var cancelModalData = '{!! json_encode(Session::get('cancelModalData'), true) !!}';
+    showCancelBookingModal(cancelModalData);
+});
+</script>
+@endif
+
+
 <script type="text/javascript">
 
 function searchFilter() {
@@ -44,20 +59,50 @@ function searchFilter() {
 	$( "#search-form" ).find( ":input" ).prop( "disabled", false );
 }
 
-function confirmDelete(id, name) {
+
+function clearModalData() {
+    $('#c-booking-id').val('');
+    $('#c-booking-no').empty();
+    $('#c-schedule').empty();
+    $('#c-destination').empty();
+}
+
+function showCancelBookingModal(data) {
+
+    clearModalData();
+
+    cancelBookingData = JSON.parse(data);
+
+    $('#c-booking-id').val(cancelBookingData.id);
+    $('#c-booking-no').append(cancelBookingData.booking_number);
+    $('#c-schedule').append(cancelBookingData.schedule);
+    $('#c-destination').append(cancelBookingData.destination);
+
+    console.log(cancelBookingData);
+
+    $('#cancel-booking-modal').modal('show');
+}
+
+function confirmCancelBooking(id, name) {
 
     swal.fire({
-        title: "Delete Vehicle " + name + "?",
+        title: "Cancel Booking?",
         text: "Are you sure you want to proceed? This cannot be undone.",
         icon: "warning",
+        customClass: {
+            confirmButton: 'btn btn-danger btn-lg ml-1 mr-1',
+            cancelButton: 'btn btn-success btn-lg ml-1 mr-1',
+        },
         showCancelButton: true,
-        confirmButtonText: 'Delete',
-        cancelButtonText: 'Cancel',
+        confirmButtonText: 'Yes, cancel it!',
+        cancelButtonText: 'Don\'t',
         reverseButtons: true,
         dangerMode: true,
     }).then((e) => {
         if (e.value) {
-            $("#delete"+id).submit();
+            $("#btn-cancel-booking").attr("disabled", true);
+            $("#btn-submit-booking").attr("disabled", true);
+            $("#form-cancel-booking").submit();
         }
     })
 }

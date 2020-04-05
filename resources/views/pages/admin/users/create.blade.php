@@ -20,7 +20,7 @@
 
         <div class="col-md-8">
             <div class="card">
-                <form id="form-user" method="POST" action="{{ route('user.store') }}">
+                <form id="form-user" method="POST" action="{{ route('admin.user.store') }}">
                 	@csrf
 	                <h5 class="card-header text-center">Fill up user information</h5>
 	                        

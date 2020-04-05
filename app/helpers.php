@@ -157,3 +157,97 @@ if (! function_exists('generateBookingNumber')) {
         return $bookingNumber;
     }
 }
+
+
+if (! function_exists('getDateRange')) {
+    /**
+     * Generate booking number
+     *
+     * @param 
+     * @return string
+     */
+    function getDateRange($fromDate, $toDate)
+    {
+        $fromYear = date('Y', strtotime($fromDate));
+        $fromMonth = date('m', strtotime($fromDate));
+        $fromDay = date('d', strtotime($fromDate));
+
+        $toYear = date('Y', strtotime($toDate));
+        $toMonth = date('m', strtotime($toDate));
+        $toDay = date('d', strtotime($toDate));
+
+        if($toDate !== '' && $toDate !== '1970-01-01 00:00:00') {
+            if($fromYear == $toYear) {
+                if($fromMonth == $toMonth) {
+                    if($fromDay == $toDay) {
+                        $dateRange = date('F j, Y', strtotime($fromDate));
+                    } else {
+                       $dateRange = date('F', strtotime($fromDate)) . ' ' . date('j', strtotime($fromDate)) . '-' . date('j', strtotime($toDate)) . ' ' . $fromYear; 
+                    }
+                } else {
+                    $dateRange = date('F j', strtotime($fromDate)) . ' - ' . date('F j', strtotime($toDate)) . ' ' . $fromYear;
+                }
+            } else {
+                $dateRange = date('F j, Y', strtotime($fromDate)) . ' - ' . date('F j, Y', strtotime($toDate));
+            } 
+        } else {
+            $dateRange = date('F j, Y', strtotime($fromDate));
+        }
+
+        return $dateRange;
+    }
+}
+
+if (! function_exists('countBookings')) {
+    /**
+     * Generate an asset path for the application.
+     *
+     * @param  string  $path
+     * @param  bool|null  $secure
+     * @return string
+     */
+    function countBookings()
+    {
+        $authId = Auth::id();
+
+        if (Auth::user()->role_id === 3) {
+
+            $all = Booking::where('employee_id', $authId)->count();
+            $pending = Booking::where('status', 1)->where('employee_id', $authId)->count();
+            $processed = Booking::where('status', 2)->where('employee_id', $authId)->count();
+            $approved = Booking::where('status', 3)->where('employee_id', $authId)->count();
+            $completed = Booking::where('status', 4)->where('employee_id', $authId)->count();
+            $cancelled = Booking::where('status', 5)->where('employee_id', $authId)->count();
+
+        } elseif (Auth::user()->role_id === 4) {
+
+            $all = Booking::where('driver_id', $authId)->count();
+            $pending = Booking::where('status', 1)->where('driver_id', $authId)->count();
+            $processed = Booking::where('status', 2)->where('driver_id', $authId)->count();
+            $approved = Booking::where('status', 3)->where('driver_id', $authId)->count();
+            $completed = Booking::where('status', 4)->where('driver_id', $authId)->count();
+            $cancelled = Booking::where('status', 5)->where('driver_id', $authId)->count();
+            
+        } else {
+
+            $all = Booking::count();
+            $pending = Booking::where('status', 1)->count();
+            $processed = Booking::where('status', 2)->count();
+            $approved = Booking::where('status', 3)->count();
+            $completed = Booking::where('status', 4)->count();
+            $cancelled = Booking::where('status', 5)->count();
+
+        }
+
+        $data = array(
+            'all'           => $all,
+            'pending'       => $pending,
+            'processed'    => $processed,
+            'approved'      => $approved,
+            'completed'     => $completed,
+            'cancelled'     => $cancelled,
+        );
+
+        return $data;
+    }
+}

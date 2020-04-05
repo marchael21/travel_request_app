@@ -29,7 +29,7 @@ class CreateBookingStatusesTable extends Migration
                 'updated_at'    => date('Y-m-d H:i:s'),
             ),
             array(
-                'name'          => 'Processing', 
+                'name'          => 'Processed', 
                 'description'   => 'Processed by dispatcher/admin',
                 'created_at'    => date('Y-m-d H:i:s'),
                 'updated_at'    => date('Y-m-d H:i:s'),

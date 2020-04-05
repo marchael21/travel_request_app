@@ -16,7 +16,7 @@
 		<!-- Page Content -->
         <div class="col-md-8">
             <div class="card">
-                <form  id="form-vehicle" method="POST" action="{{ route('vehicle.store') }}">
+                <form  id="form-vehicle" method="POST" action="{{ route('admin.vehicle.store') }}">
                 	@csrf
 	                <h5 class="card-header text-center">Fill up vehicle information</h5>
 	                        

@@ -11,7 +11,7 @@
     	<!-- Page Title -->
     	<div class="col-md-12 border-bottom d-flex justify-content-between mb-5">
 			<h4 class="pt-2">Vehicle<small class="ml-2">&nbsp;<i class="fas fa-angle-double-right"></i>&nbsp;List</small></h4>
-			<a href="{{ route('vehicle.create') }}" class="btn btn-sm btn-success mb-3 float-right"><i class="fas fa-plus"></i> Add Vehicle</a>
+			<a href="{{ route('admin.vehicle.create') }}" class="btn btn-sm btn-success mb-3 float-right"><i class="fas fa-plus"></i> Add Vehicle</a>
 		</div>
 
 		<!-- Page Content -->
@@ -94,7 +94,7 @@
 	                        	@if($vehicle->status == 4) <span class="badge badge-warning p-1 w-100">Under Maintenance</span> @endif
 	                        </td>
 	                        <td class="text-center">
-	                        	<form id="delete{!! $vehicle->id !!}" action="{{ route('vehicle.delete', $vehicle->id)}}" method="post" type="hidden">
+	                        	<form id="delete{!! $vehicle->id !!}" action="{{ route('admin.vehicle.delete', $vehicle->id)}}" method="post" type="hidden">
 				                  	@csrf
 				                  	@method('DELETE')
 				                </form>

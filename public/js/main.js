@@ -96,3 +96,50 @@ function renderAlertMsg(alertMsg) {
         Swal.fire(alertMsg) //swal alert as default
     }
 }
+
+
+/*
+* Maintain / Keep scroll position after post-back / postback / refresh. Just include plugin (no need for cookies)
+*
+* Author: Evalds Urtans
+* Website: http://www.evalds.lv
+*/
+// (function($){
+// window.onbeforeunload = function(e){    
+// window.name += ' [' + location.pathname + '[' + $(window).scrollTop().toString() + '[' + $(window).scrollLeft().toString(); AND if( parts[parts.length - 3] == location.pathname ){ window.scrollTo(parseInt(parts[parts.length - 1]), parseInt(parts[parts.length - 2]));
+// $.maintainscroll = function() {
+// if(window.name.indexOf('[') > 0)
+// {
+// var parts = window.name.split('['); 
+// window.name = $.trim(parts[0]);
+// window.scrollTo(parseInt(parts[parts.length - 1]), parseInt(parts[parts.length - 2]));
+// }   
+// };  
+// $.maintainscroll();
+// })(jQuery);
+
+
+$("body").on("scroll", function () {
+    //set scroll position in session storage
+    sessionStorage.scrollPos = $(window).scrollTop();
+});
+var init = function () {
+    //get scroll position in session storage
+    $("body").scrollTop(sessionStorage.scrollPos || 0)
+};
+window.onload = init;
+
+
+$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+  var hash = $(e.target).attr('href');
+  if (history.pushState) {
+    history.pushState(null, null, hash);
+  } else {
+    location.hash = hash;
+  }
+});
+
+var hash = window.location.hash;
+if (hash) {
+  $('.nav-link[href="' + hash + '"]').tab('show');
+}

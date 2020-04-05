@@ -37,10 +37,6 @@ class CreateBookingsTable extends Migration
             $table->dateTime('status_date')->nullable()->default(null);
             $table->dateTime('departure_date')->nullable()->default(null);
             $table->dateTime('return_date')->nullable()->default(null);
-            // $table->dateTime('departure_date')->nullable()->default(null);
-            // $table->dateTime('return_date')->nullable()->default(null);
-            // $table->dateTime('return_date')->nullable()->default(null);
-            // $table->dateTime('return_date')->nullable()->default(null);
             $table->bigInteger('created_by')->nullable()->unsigned()->index()->default(null);
             $table->bigInteger('updated_by')->nullable()->unsigned()->index()->default(null);
             $table->timestamps();

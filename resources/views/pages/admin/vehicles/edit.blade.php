@@ -16,7 +16,7 @@
         <!-- Page Content -->
         <div class="col-md-7">
             <div class="card">
-                <form  id="form-vehicle" method="POST" action="{{ route('vehicle.update', $vehicle->id) }}">
+                <form  id="form-vehicle" method="POST" action="{{ route('admin.vehicle.update', $vehicle->id) }}">
                     @method('PATCH')
                     @csrf
                     <h5 class="card-header text-center">Vehicle Information</h5>
@@ -241,7 +241,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="vehicle-stat-modal" tabindex="-1" role="dialog" aria-labelledby="vehicle-stat-modal-label" aria-hidden="true">
-    <form  id="form-vehicle-stats" method="POST" action="{{ route('vehicle.updateStats', $vehicleStat->id) }}">
+    <form  id="form-vehicle-stats" method="POST" action="{{ route('admin.vehicle.updateStats', $vehicleStat->id) }}">
         @method('PATCH')
         @csrf
         <div class="modal-dialog modal-lg" role="document">

@@ -16,49 +16,52 @@
                 </li>
 
                 @if(Auth::user()->role_id === 3)
-                <li class="nav-item">
+                <li class="nav-item {{ (request()->is('request-booking*')) ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('request-booking') }}"><i class="fas fa-hand-point-up"></i>&nbsp;Book Now</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ (request()->is('my-booking*')) ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('my-booking') }}"><i class="fas fa-passport"></i>&nbsp;My Bookings</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-calendar-alt"></i>&nbsp;Schedules</a>
-                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="{{ url('my-schedule') }}"><i class="fas fa-calendar-alt"></i>&nbsp;Schedules</a>
+                </li> -->
                 @endif
 
                 @if(Auth::user()->role_id === 4)
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-passport"></i>&nbsp;Assigned Bookings</a>
+                <!-- <li class="nav-item">
+                    <a class="nav-link {{ (request()->is('assigned-booking*')) ? 'active' : '' }}" href="{{ url('assigned-booking') }}"><i class="fas fa-truck"></i>&nbsp;Ongoing Trip/s</a>
+                </li> -->
+                <li class="nav-item {{ (request()->is('assigned-booking*')) ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ url('assigned-booking') }}"><i class="fas fa-passport"></i>&nbsp;Assigned Bookings</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-bus"></i>&nbsp;Assigned Vehicles</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-calendar-alt"></i>&nbsp;Schedules</a>
-                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="{{ url('') }}"><i class="fas fa-bus"></i>&nbsp;Assigned Vehicles</a>
+                </li> -->
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="{{ url('') }}"><i class="fas fa-calendar-alt"></i>&nbsp;Schedules</a>
+                </li> -->
                 @endif
 
-                @if(Auth::user()->role_id === 1 || Auth::user()->role_id === 2)
                 <!-- Admin Links -->
-                <!-- @if(Auth::user()->role_id === 2)
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-passport"></i>&nbsp;Approve Bookings</a>
+                @if(Auth::user()->role_id === 1 || Auth::user()->role_id === 2)
+                @if(Auth::user()->role_id === 1)
+                <li class="nav-item {{ (request()->is('process-booking*')) ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ url('process-booking') }}"><i class="fas fa-passport"></i>&nbsp;Process Bookings</a>
                 </li>
                 @endif
-                @if(Auth::user()->role_id === 1)
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-passport"></i>&nbsp;Assign Bookings</a>
+                @if(Auth::user()->role_id === 2)
+                <li class="nav-item {{ (request()->is('approve-booking*')) ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ url('approve-booking') }}"><i class="fas fa-passport"></i>&nbsp;Approve Bookings</a>
                 </li>
-                @endif -->
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-passport"></i>&nbsp;Bookings</a>
+                @endif
+                <li class="nav-item {{ (request()->is('booking*')) ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ url('booking') }}"><i class="fas fa-passport"></i>&nbsp;Bookings</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-chart-bar"></i>&nbsp;Reports</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="vehicles-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!-- 
+
+                 -->
+                <li class="nav-item dropdown {{ (request()->is('vehicle*')) ? 'active' : '' }}">
+                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="vehicles-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-truck"></i>&nbsp;Vehicles
                     </a>
                     <div class="dropdown-menu" aria-labelledby="vehicles-link">
@@ -81,12 +84,13 @@
             </ul>
 
                    
-            <form class="d-flex">
+            <!-- <form class="d-flex">
               <input id="search-booking-input" class="form-control form-control-sm mr-sm-2" type="search" placeholder="Search/Enter booking number" aria-label="Search">
               <button class="btn btn-sm btn-info text-white" type="button"><i class="fas fa-search fa-lg"></i></button>
-            </form>
+            </form> -->
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav border-left border-white ml-3">
+            <!-- <ul class="navbar-nav border-left border-white ml-3"> -->
+            <ul class="navbar-nav ml-3">
                 <!-- Authentication Links -->
                 @guest
                 <li class="nav-item ml-2">

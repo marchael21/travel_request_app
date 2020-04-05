@@ -32,7 +32,7 @@ class StoreBooking extends FormRequest
             'return_date'                   => 'required',
             'destination'                   => 'required|string|max:300',
             'purpose'                       => 'required|string|max:300',
-            // 'objectives'                    => 'required|string|max:300',
+            'objectives'                    => 'string|max:300',
             // 'remarks'                       => 'required|string|max:300',
         ];
     }

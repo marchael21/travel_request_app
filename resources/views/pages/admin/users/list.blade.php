@@ -11,7 +11,7 @@
     	<!-- Page Title -->
     	<div class="col-md-12 border-bottom d-flex justify-content-between mb-5">
 			<h4 class="pt-2">User<small class="ml-2">&nbsp;<i class="fas fa-angle-double-right"></i>&nbsp;List</small></h4>
-			<a href="{{ route('user.create') }}" class="btn btn-sm btn-success mb-3 float-right"><i class="fas fa-plus"></i> Add User</a>
+			<a href="{{ route('admin.user.create') }}" class="btn btn-sm btn-success mb-3 float-right"><i class="fas fa-plus"></i> Add User</a>
 		</div>
 
 		<!-- Page Filters -->
@@ -117,7 +117,7 @@
 	                        </td>
 	                        <td class="text-center">
 	                        	@if(Auth::id() !== $user->id)
-	                        	<form id="delete{!! $user->id !!}" action="{{ route('user.delete', $user->id)}}" method="post" type="hidden">
+	                        	<form id="delete{!! $user->id !!}" action="{{ route('admin.user.delete', $user->id)}}" method="post" type="hidden">
 				                  	@csrf
 				                  	@method('DELETE')
 				                </form>

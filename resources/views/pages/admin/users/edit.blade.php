@@ -20,7 +20,7 @@
 
         <div class="col-md-8">
             <div class="card">
-                <form id="form-user" method="POST" action="{{ route('user.update', $user->id) }}">
+                <form id="form-user" method="POST" action="{{ route('admin.user.update', $user->id) }}">
                     @method('PATCH')
                 	@csrf
 	                <h5 class="card-header text-center">User Information</h5>
